@@ -1,0 +1,36 @@
+.card-img-top {
+  transform: scale(1,1);
+  transition-duration: 500ms;
+  transition-timing-function: ease;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.2,1.2);
+  transition-duration: 500ms;
+  transition-timing-function: ease;
+  opacity: .8;
+}
+
+.btn-group-animation {
+  position: relative;
+  overflow: hidden;
+  visibility: hidden;
+  transform: translateY(+10%);
+  opacity: 0;
+}
+
+.card:hover .btn-group-animation{
+  visibility: visible;
+  transform: translateY(-10%);
+  opacity: 1;
+}
+
+.btn-group-animation{
+  transition: all .3s ease-in-out;
+}
+
+@media(max-width: 768px){
+  .btn-group-animation .btn {
+    font-size: 80%;
+  }
+}

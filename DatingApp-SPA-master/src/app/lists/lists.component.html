@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <button type="button" class="btn btn-primary" [(ngModel)]="likesParam" btnRadio="likers"
+      (click)="loadUsers(this.userParams)">Memebers
+      who like me</button>
+    <button type="button" class="btn btn-primary" [(ngModel)]="likesParam" btnRadio="likees"
+      (click)="loadUsers(this.userParams)">Memebers
+      who i like</button>
+  </div>
+  <h2>
+    {{ userParams.Likers ? 'Members who like me' : 'Members who i\'ve liked' }} : {{pagination.totalItems}}
+  </h2>
+  <div class="row">
+    <div *ngFor="let user of users" class="col-lg-3 col-md-4 col-sm-6 col-6">
+      <app-member-card [user]="user"></app-member-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="text-center m-auto">
+      <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+        (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+        lastText="&raquo;">
+      </pagination>
+    </div>
+  </div>
+</div>

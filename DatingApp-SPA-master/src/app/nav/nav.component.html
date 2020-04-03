@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary p-1">
+  <a class="navbar-brand" [routerLink]="['/home']">DatingApp</a>
+  <button
+    class="navbar-toggler navbar-toggler-icon"
+    type="button"
+    data-toggle="collapse"
+    data-target="#collapsibleNavId"
+    aria-controls="collapsibleNavId"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  ></button>
+  <div class="collapse navbar-collapse" id="collapsibleNavId">
+    <div class="mr-auto mt-2 mt-lg-0">
+      <ul class="navbar-nav" *ngIf="loggedIn()">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/members']">Matches</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/lists']">Lists</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/messages']">Messages</a>
+        </li>
+      </ul>
+    </div>
+    <ul *ngIf="loggedIn()" class="navbar-nav mr-5 mt-2 mt-lg-0">
+      <li class="nav-item">
+        <img src="{{user?.mainPhotoUrl}}" alt="{{user?.userName}}" class="rounded-circle img-profile m-0">
+      </li>
+      <li class="dropdown nav-item" dropdown>
+        <a class="nav-link  dropdown-toggle" (click)="false" style="cursor: pointer" dropdownToggle
+          >Welcome {{ this.authService.decodedToken?.unique_name }}</a
+        >
+        <div class="dropdown-menu" *dropdownMenu>
+          <a class="dropdown-item" [routerLink]="['/member/edit']"
+            ><i class="fa fa-user"></i> Edit profile</a
+          >
+          <a class="dropdown-item" style="cursor: pointer" (click)="logout()"
+            ><i class="fa fa-sign-in"></i> Logout</a
+          >
+        </div>
+      </li>
+    </ul>
+    <form
+      *ngIf="!loggedIn()"
+      #loginForm="ngForm"
+      class="form-inline my-2 my-lg-0"
+      (ngSubmit)="login()"
+    >
+      <input
+        class="form-control mr-sm-2"
+        type="email"
+        placeholder="Email"
+        aria-label="Email"
+        name="username"
+        required
+        [(ngModel)]="model.username"
+      />
+      <input
+        class="form-control mr-sm-2"
+        type="password"
+        placeholder="Password"
+        aria-label="Password"
+        name="password"
+        required
+        [(ngModel)]="model.password"
+      />
+      <button
+        class="btn btn-outline-light my-2 my-sm-0"
+        type="submit"
+        [disabled]="!loginForm.valid"
+      >
+        Sign In
+      </button>
+    </form>
+  </div>
+</nav>

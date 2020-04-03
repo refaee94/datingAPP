@@ -1,0 +1,74 @@
+<div class="bg-primary m-2 p-0 text-center rounded rounded-sm">
+  <h3 class="text-white">{{ user.userName }}'s Profile</h3>
+</div>
+<div class="container">
+  <div class="row mb-2">
+    <div class="col-sm-4 card bg-light text-dark p-1">
+      <img
+        class="card-img-top"
+        src="{{ user.mainPhotoUrl }}"
+        alt="{{ user.knownAs }}"
+      />
+      <div class="card-header"></div>
+      <div class="card-body">
+        <p class="card-text">
+          <strong>Location:</strong>
+          <br />
+          <span>{{ user.city }}, {{ user.country }}</span>
+        </p>
+        <p class="card-text">
+          <strong>Age:</strong>
+          <br />
+          <span>{{ user.age }}</span>
+        </p>
+        <p class="card-text">
+          <strong>Last Active:</strong>
+          <br />
+          <span>{{ user.lastActive | timeAgo }}</span>
+        </p>
+        <p class="card-text">
+          <strong>Member Since</strong>
+          <br />
+          <span>{{ user.created | date: 'mediumDate' }}</span>
+        </p>
+      </div>
+      <div class="card-footer">
+        <div class="btn-group-sm m-auto text-center">
+          <button class="btn btn-primary ml-1">Like</button>
+          <button class="btn btn-success mr-1 ml-1">Message</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div>
+        <tabset>
+          <tab heading="About {{ user.knownAs }}">
+            <div class="tab-content container m-auto">
+              <h3>Description</h3>
+              <p>{{ user.introduction }}</p>
+              <h4>Looking For</h4>
+              <p>{{ user.lookingFor }}</p>
+            </div>
+          </tab>
+          <tab heading="Interests">
+            <div class="tab-content container m-auto">
+              <h3>Description</h3>
+              <p>{{ user.interests }}</p>
+            </div>
+          </tab>
+          <tab heading="Photos">
+            <div class="tab-content container m-auto">
+              <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+            </div>
+          </tab>
+          <tab heading="Messages">
+            <div class="tab-content container m-auto">
+              <h3>Description</h3>
+              <p>Messages will go here</p>
+            </div>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>

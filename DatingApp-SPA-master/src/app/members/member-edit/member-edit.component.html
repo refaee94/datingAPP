@@ -1,0 +1,125 @@
+<div class="m-2 p-1 col-s text-center alert alert-info">
+  <h3 class=""><strong>your Profile</strong></h3>
+</div>
+<div class="container">
+  <div class="row mb-2">
+    <div class="col-sm-4 card bg-white text-dark p-1">
+      <img
+        class="card-img-top"
+        src="{{ user.mainPhotoUrl }}"
+        alt="{{ user.knownAs }}"
+      />
+      <div class="card-header"></div>
+      <div class="card-body">
+        <p class="card-text">
+          <strong>Location:</strong>
+          <br />
+          <span>{{ user.city }}, {{ user.country }}</span>
+        </p>
+        <p class="card-text">
+          <strong>Age:</strong>
+          <br />
+          <span>{{ user.age }}</span>
+        </p>
+        <p class="card-text">
+          <strong>Last Active:</strong>
+          <br />
+          <span>{{ user.lastActive | timeAgo }}</span>
+        </p>
+        <p class="card-text">
+          <strong>Member Since</strong>
+          <br />
+          <span>{{ user.created | date: 'mediumDate'}}</span>
+        </p>
+      </div>
+      <div class="card-footer">
+        <div class="btn-group-sm m-auto text-center">
+          <button
+            form="editForm"
+            [disabled]="!editForm.dirty"
+            class="btn btn-success btn-block"
+          >
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div [hidden]="!editForm.dirty">
+        <h6 class="alert alert-info">
+          <strong>Information:</strong> you have made some changes. any changes
+          will be lost if you don't save it
+        </h6>
+      </div>
+      <div>
+        <tabset>
+          <tab heading="Edit Profile">
+            <div class="container m-auto tab-content">
+              <form #editForm="ngForm" (submit)="updateUser()" id="editForm">
+                <div>
+                  <div class="form-group">
+                    <label>Description:</label>
+                    <textarea
+                      class="form-control"
+                      name="introduction"
+                      id="introduction"
+                      rows="6"
+                      [(ngModel)]="user.introduction"
+                    ></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label>Looking For:</label>
+                    <textarea
+                      class="form-control"
+                      name="lookingFor"
+                      id="lookingFor"
+                      rows="6"
+                      [(ngModel)]="user.lookingFor"
+                    ></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Interests</label>
+                    <textarea
+                      name="interests"
+                      id="interests"
+                      rows="6"
+                      class="form-control"
+                      [(ngModel)]="user.interests"
+                    ></textarea>
+                  </div>
+                  <div>
+                    <label for="">Location Details:</label>
+                    <br>
+                      <label for="" class="m-1">Country: </label>
+                      <input
+                        type="text"
+                        name="country"
+                        id="country"
+                        class="form-control"
+                        [(ngModel)]="user.country"
+                      />
+
+                      <label for="" class="m-1">City: </label>
+                      <input
+                        type="text"
+                        name="city"
+                        id="city"
+                        class="form-control"
+                        [(ngModel)]="user.city"
+                      />
+                    </div>
+                  </div>
+              </form>
+            </div>
+          </tab>
+
+          <tab heading="Edit Photos">
+            <div class="tab-content container mt-1">
+              <app-photo-editor [photos]="user.photos"></app-photo-editor>
+            </div>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>

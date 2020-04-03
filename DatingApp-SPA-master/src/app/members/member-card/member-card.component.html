@@ -1,0 +1,30 @@
+<div
+  class="card card-outline-success bg-light border-0 m-1 p-1"
+>
+  <div class="overflow-hidden">
+    <img
+      class="card-img-top"
+      src="{{ user.mainPhotoUrl? user.mainPhotoUrl : '../../../../../assets/116 user.png' }}"
+      alt="{{ user.knownAs }}"
+    />
+      <ul class="list-inline text-center btn-group-animation mt-n5">
+        <li class="list-inline-item"><button class="btn btn-danger" [routerLink]="['/members/', user.id]"><i class="fa fa-user"></i></button></li>
+        <li class="list-inline-item"><button class="btn btn-danger" (click)="sendLike(user.id)"><i class="fa fa-heart"></i></button></li>
+        <li class="list-inline-item"><button class="btn btn-danger"><i class="fa fa-envelope"></i></button></li>
+      </ul>
+  </div>
+  <div class="card-body">
+    <div class="text-center">
+      <h5>
+        <i class="fa fa-user"></i
+        ><span> {{ user.knownAs }}, {{ user.age }}</span>
+      </h5>
+    </div>
+    <div class="text-center font-italic">
+      <h5>
+        <small>{{ user.city }}</small>
+      </h5>
+    </div>
+  </div>
+</div>
+
