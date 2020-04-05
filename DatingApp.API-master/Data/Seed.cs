@@ -19,16 +19,16 @@ namespace DatingApp.API.Data
         public static async void SeedUsers(this IApplicationBuilder app)
         {
             var authRepository = GetAppService<IAuthRepository>(app);
-            // var context = GetAppService<DataContext>(app);
-            // if (context.Users.Any())
-            // {
+            var context = GetAppService<DataContext>(app);
+            if (context.Users.Count() <2)
+            {
             var userData = System.IO.File.ReadAllText("Data\\UserSeedData.json");
             var users = JsonConvert.DeserializeObject<List<User>>(userData);
             foreach (var user in users)
             {
                 await authRepository.Register(user, "password");
             }
-            // }
+            }
         }
     }
 }
