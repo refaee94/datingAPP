@@ -1,4 +1,4 @@
-<div *ngIf="!registerMode" class="text-center">
+  <div *ngIf="!registerMode" class="text-center">
   <h1 class="display-3">Welcome to DatingApp</h1>
   <p class="lead">
     Come on in to view your matches... All you need to do is Sing up!
@@ -12,8 +12,8 @@
       >Register</button
     >
 
-    <a class="list-inline-item btn btn-info btn-lg" href="#" role="button"
-      >Learn more</a
+    <a class="list-inline-item btn btn-info btn-lg" [routerLink]="['/members']" role="button"
+      >lets Begin</a
     >
   </p>
 </div>
@@ -22,3 +22,8 @@
     (cancelRegister)="cancelRegister($event)"
   ></app-register>
 </div>
+
+
+
+
+

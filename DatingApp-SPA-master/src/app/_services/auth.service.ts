@@ -67,44 +67,22 @@ export class AuthService {
             this.changeCurrentUser(this.initialUser(user));
             this.decodedToken = this.jwtHelper.decodeToken(this.userToken);
           }
-        }),
-        catchError(this.handleError)
+        })
       );
   }
 
   reigster(user: User) {
-    return this.http
-      .post(this.baseUrl + 'register', user, this.requestOptions())
-      .pipe(catchError(this.handleError));
+    return this.http.post(
+      this.baseUrl + 'register',
+      user,
+      this.requestOptions()
+    );
   }
 
   requestOptions() {
     return {
       headers: new HttpHeaders({ 'Content-type': 'application/json' })
     };
-  }
-
-  private handleError(errorResponse: HttpErrorResponse) {
-    if (errorResponse.headers) {
-      const applicationError = errorResponse.headers.get('Application-Error');
-      if (applicationError) {
-        return throwError(applicationError);
-      }
-    }
-    if (errorResponse.error) {
-      const serverError = errorResponse.error.errors;
-
-      if (serverError !== undefined) {
-        let modelStateError = '';
-        for (const key in serverError) {
-          if (serverError[key]) {
-            modelStateError += serverError[key] + '\n';
-          }
-        }
-        return throwError(modelStateError || 'Server Error');
-      }
-      return throwError('error');
-    }
   }
 
   loggedIn() {

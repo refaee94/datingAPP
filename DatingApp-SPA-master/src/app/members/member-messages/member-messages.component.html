@@ -1,0 +1,53 @@
+<div class="card chat">
+  <div *ngIf="messages?.length == 0">
+    <p>
+      No message yet... say hi by uesing message box below
+    </p>
+  </div>
+  <ul class="list-group list-group-flush chat-body" *ngIf="messages?.length != 0">
+    <li class="list-group-item chat-msg" *ngFor="let message of messages">
+      <div *ngIf="message.senderId == user.id">
+        <span class="text-left pull-left">
+          <img class="rounded-circle chat-img" src="{{ message.senderPhotoUrl }}">
+        </span>
+        <div class="chat-msg-content">
+          <strong class="">{{ message.senderKnownAs }}</strong>
+          <div class="text-muted pull-right">
+            <small>
+              <i class="fa fa-clock-o"></i><span>{{ message.dateSent | timeAgo }}</span>
+            </small>
+          </div>
+          <p>{{ message.content }}</p>
+        </div>
+
+      </div>
+      <div *ngIf="message.senderId != user.id" class="text-right">
+        <span class="text-left pull-right">
+          <img class="rounded-circle chat-img" src="{{ message.senderPhotoUrl }}">
+        </span>
+        <div class="chat-msg-content">
+          <strong class="">{{ message.senderKnownAs }}</strong>
+          <div class="text-muted pull-left">
+            <small>
+              <i class="fa fa-clock-o"></i><span>{{ message.dateSent | timeAgo }}</span>
+              <span *ngIf="message.isRead" class="text-success">(Read {{ message.dateRead | timeAgo }})</span>
+              <span *ngIf="!message.isRead" class="text-danger">(UnRead)</span>
+            </small>
+          </div>
+          <p>{{ message.content }}</p>
+        </div>
+
+      </div>
+    </li>
+  </ul>
+  <div class="card-footer">
+    <form #messageForm="ngForm" (submit)="messageForm.valid && sendMessage()">
+      <div class="input-group">
+        <input type="text" name="content" id="content" [(ngModel)]="newMessage.content" class="form-control input-sm" placeholder="send a private message">
+        <span class="btn-group">
+          <button class="btn btn-primary btn-sm" [disabled]="!messageForm.valid">Send</button>
+        </span>
+      </div>
+    </form>
+  </div>
+</div>

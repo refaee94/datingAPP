@@ -22,8 +22,6 @@ export class NavComponent implements OnInit {
     this.authService.currentUserObservable.subscribe(user => {
       this.user = user;
     });
-    this.router.navigateByUrl('/members');
-    
   }
 
   loggedIn() {

@@ -36,7 +36,6 @@ export class MemberEditComponent implements OnInit {
       .subscribe(
         () => {
           this.alertifyService.success('update profile successfully');
-          console.log(this.user)
           this.editFrom.reset(this.user);
         },
         error => {

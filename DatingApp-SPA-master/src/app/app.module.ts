@@ -24,8 +24,11 @@ import {TimeAgoPipe} from 'time-ago-pipe';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ListsReslover } from './_resolvers/lists.resolver';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { ErrorInterceprtorProvider } from './ErrorInterceprtor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './_services/auth.service';
+import { CommonModule } from '@angular/common';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -42,16 +45,17 @@ export function tokenGetter() {
       MemberCardComponent,
       MemberDetailComponent,
       MemberEditComponent,
-      PhotoEditorComponent
-      
+      PhotoEditorComponent,
+      MemberMessagesComponent,
+
    ],
    imports: [
-      BrowserAnimationsModule,
-
+    BrowserAnimationsModule,
       BrowserModule,
       AppRoutingModule,
       HttpClientModule,
       FormsModule,
+      ReactiveFormsModule,
       BsDropdownModule.forRoot(),
       JwtModule.forRoot({
         config: {
@@ -65,9 +69,12 @@ export function tokenGetter() {
       ReactiveFormsModule,
       BsDatepickerModule.forRoot(),
       PaginationModule.forRoot(),
-      ButtonsModule.forRoot()
+      ButtonsModule.forRoot(),
+      CommonModule
    ],
-   providers: [AuthService],
+   providers: [
+    AuthService
+   ],
    bootstrap: [
       AppComponent
    ]

@@ -1,11 +1,13 @@
 <div class="container">
-  <div class="row">
-    <button type="button" class="btn btn-primary" [(ngModel)]="likesParam" btnRadio="likers"
-      (click)="loadUsers(this.userParams)">Memebers
-      who like me</button>
-    <button type="button" class="btn btn-primary" [(ngModel)]="likesParam" btnRadio="likees"
-      (click)="loadUsers(this.userParams)">Memebers
-      who i like</button>
+  <div class="row mt-2">
+    <div class="btn-group">
+      <button class="btn btn-primary" [(ngModel)]="likesParam" btnRadio="likers"
+        (click)="loadUsers(this.userParams)">Memebers
+        who like me</button>
+      <button class="btn btn-primary" [(ngModel)]="likesParam" btnRadio="likees"
+        (click)="loadUsers(this.userParams)">Memebers
+        who i like</button>
+    </div>
   </div>
   <h2>
     {{ userParams.Likers ? 'Members who like me' : 'Members who i\'ve liked' }} : {{pagination.totalItems}}

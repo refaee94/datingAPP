@@ -11,11 +11,13 @@ import { UserParams } from '../_models/UserParams';
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class ListsReslover implements Resolve<PaginatedResult<User[]>> {
   userParams: UserParams = { itemsPerPage: 5, pageNumber: 1, Likers: true };
 
   /**
-   *
+   * resolver constructor
    */
   constructor(
     private userService: UserService,
@@ -28,6 +30,7 @@ export class ListsReslover implements Resolve<PaginatedResult<User[]>> {
     return this.userService.getUsers(this.userParams).pipe(
       catchError(error => {
         this.alertifyService.error('Problem retrieving data');
+        this.alertifyService.warning('please refresh page');
         this.router.navigate(['/home']);
         return of(null);
       })

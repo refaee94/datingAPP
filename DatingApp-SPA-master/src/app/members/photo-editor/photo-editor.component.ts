@@ -67,7 +67,7 @@ export class PhotoEditorComponent implements OnInit {
             }
           });
           photo.isMain = true;
-          // this.alertifyService.success(JSON.stringify("response"));
+          this.alertifyService.success(JSON.stringify(response));
           this.authService.changePhotosForCurrentUser(this.photos);
         },
         error => {

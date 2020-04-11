@@ -1,17 +1,13 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-primary p-1">
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary p-1 ">
   <a class="navbar-brand" [routerLink]="['/home']">DatingApp</a>
   <button
-    class="navbar-toggler navbar-toggler-icon"
+    class="navbar-toggler"
     type="button"
     data-toggle="collapse"
-    data-target="#collapsibleNavId"
-    aria-controls="collapsibleNavId"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  ></button>
-  <div class="collapse navbar-collapse" id="collapsibleNavId">
+    data-target="#collapsible"><span class="navbar-toggler-icon"></span></button>
+  <div class="collapse navbar-collapse" id="collapsible">
     <div class="mr-auto mt-2 mt-lg-0">
-      <ul class="navbar-nav" *ngIf="loggedIn()">
+      <ul class="navbar-nav nav" *ngIf="loggedIn()">
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/members']">Matches</a>
         </li>
